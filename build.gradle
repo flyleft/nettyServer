@@ -1,0 +1,49 @@
+apply plugin: 'java'
+
+group 'me.jcala.netty'
+version '1.0-SNAPSHOT'
+description = """smart_home-with-netty-and-spring"""
+sourceCompatibility = 1.7//JDK的版本为1.7
+
+repositories {
+    mavenCentral()
+}
+ext{
+    springVersion = '4.2.5.RELEASE'//spring框架的版本
+    nettyVersion = '5.0.0.Alpha2'//netty的版本
+    mybatisVersion='3.4.0'
+    mybatisSpringVersion='1.3.0'
+    ehcacheVersion='2.10.2'
+}
+dependencies {
+    //---------------------单元测试----------------------------
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    //--------------------数据库驱动----------------------------
+    compile 'org.mongodb:mongo-java-driver:3.2.2'
+    compile 'mysql:mysql-connector-java:5.1.38'
+    //-------------------数据库连接池---------------------------
+    compile 'com.zaxxer:HikariCP:2.4.5'
+    //----------------------ORM------------------------------
+    compile group: 'org.mybatis', name: 'mybatis', version:mybatisVersion
+    compile group: 'org.mybatis', name: 'mybatis-spring', version:mybatisSpringVersion
+    compile 'org.springframework.data:spring-data-mongodb:1.9.1.RELEASE'
+    //-----------------------缓存----------------------------
+    compile group: 'net.sf.ehcache', name: 'ehcache', version:ehcacheVersion
+    //----------------------工具包----------------------------
+    compile 'commons-httpclient:commons-httpclient:3.1-rc1'
+    compile 'org.javassist:javassist:3.20.0-GA'
+    //---------------------日志处理----------------------------
+    compile 'org.slf4j:slf4j-api:1.7.21'
+    compile 'ch.qos.logback:logback-core:1.1.7'
+    compile 'ch.qos.logback:logback-classic:1.1.7'
+    //---------------------json处理---------------------------
+    compile 'com.google.code.gson:gson:2.6.2'
+    //---------------------netty-----------------------------
+    compile group: 'io.netty', name: 'netty-all', version:nettyVersion
+    //---------------------spring----------------------------
+    compile group: 'org.springframework', name: 'spring-test', version:springVersion
+    compile group: 'org.springframework', name: 'spring-jdbc', version:springVersion
+    compile(group: 'org.springframework', name: 'spring-context', version:springVersion) {
+        exclude(module: 'commons-logging')
+    }
+}
